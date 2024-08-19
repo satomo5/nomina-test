@@ -1,0 +1,33 @@
+@import "@/styles/colors";
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+
+  &-success {
+    background-color: $color-success-light;
+    color: $color-success;
+  }
+
+  &-danger {
+    background-color: $color-danger-light;
+    color: $color-danger;
+  }
+
+  &-warning {
+    background-color: $color-warning-light;
+    color: $color-warning;
+  }
+
+  &-info {
+    background-color: $color-primary-light;
+    color: $color-primary;
+  }
+}

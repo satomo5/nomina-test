@@ -1,0 +1,32 @@
+/* Define color variables */
+$color-primary: #0070f3;
+$color-success: #28a745;
+$color-secondary: #6c757d;
+$color-danger: #dc3545;
+$color-warning: #ffc107;
+$color-light: #f9f9f9;
+$color-dark: #333;
+$color-border: #ededed;
+
+/* Lighter and darker shades */
+$color-primary-light: lighten($color-primary, 35%);
+$color-primary-dark: darken($color-primary, 35%);
+
+$color-success-light: lighten($color-success, 35%);
+$color-success-dark: darken($color-success, 35%);
+
+$color-secondary-light: lighten($color-secondary, 35%);
+$color-secondary-dark: darken($color-secondary, 35%);
+
+$color-danger-light: lighten($color-danger, 35%);
+$color-danger-dark: darken($color-danger, 35%);
+
+$color-warning-light: lighten($color-warning, 35%);
+$color-warning-dark: darken($color-warning, 35%);
+
+/* Define hover colors */
+$color-primary-hover: #005bb5;
+$color-success-hover: #218838;
+$color-secondary-hover: #5a6268;
+$color-danger-hover: #c82333;
+$color-warning-hover: #e0a800;

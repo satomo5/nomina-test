@@ -1,0 +1,39 @@
+.data-list {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    .filter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  .list-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

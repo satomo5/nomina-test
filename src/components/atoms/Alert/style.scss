@@ -1,0 +1,46 @@
+@import "@/styles/colors";
+
+.alert-box {
+  padding: 15px 20px;
+  border-radius: 5px;
+  position: relative;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: white;
+
+  &.alert-success {
+    background-color: $color-success-light;
+    color: $color-success;
+  }
+
+  &.alert-error {
+    background-color: $color-danger-light;
+    color: $color-danger;
+  }
+
+  &.alert-warning {
+    background-color: $color-warning-light;
+    color: $color-warning;
+  }
+
+  &.alert-info {
+    background-color: $color-primary-light;
+    color: $color-primary;
+  }
+
+  .alert-message {
+    margin-right: 20px;
+  }
+
+  .alert-close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}

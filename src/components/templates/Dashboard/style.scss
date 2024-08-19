@@ -1,0 +1,36 @@
+@import "@/styles/colors";
+
+.layout {
+  display: flex;
+
+  .main-content {
+    margin-left: 250px;
+    padding-top: 60px; /* To account for the fixed header */
+    width: 100%;
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .card-wrapper {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+}

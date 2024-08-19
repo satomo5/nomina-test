@@ -1,0 +1,37 @@
+@import "@/styles/colors";
+
+.detail {
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .detail-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid $color-border;
+  }
+
+  .detail-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+
+    p:nth-child(1) {
+      width: 100px;
+    }
+  }
+
+  .btn-action {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+}
