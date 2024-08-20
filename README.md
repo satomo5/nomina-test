@@ -20,17 +20,15 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Concept
 
-To learn more about Next.js, take a look at the following resources:
+In this Project, I use `Atomic Design Methodology` for maintain component foldering system, `Context API` for maintain state management, and `App Router` to maintain route management. Besides that, I seperate file and folder based on functionality.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Note
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- For mocking auth and user data, I use [Dummyjson Auth](https://dummyjson.com/docs/auth#auth-login). You can see https://dummyjson.com/users for list users are posible to use to login in this project.
+- All data stored in localstorage.
 
-## Deploy on Vercel
+## Access
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can access the test at https://nomina-test.vercel.app/.
