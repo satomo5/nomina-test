@@ -1,6 +1,5 @@
 "use client";
 
-import { UserProvider } from "@/context/user";
 import UserList from "./List";
 import "./style.scss";
 import UserDetail from "./Detail";
@@ -32,5 +31,5 @@ export default function UserPage() {
       break;
   }
 
-  return <UserProvider>{renderChild}</UserProvider>;
+  return renderChild;
 }

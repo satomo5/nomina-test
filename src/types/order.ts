@@ -1,9 +1,10 @@
 import { StatusOrderType } from "./status";
+import { UserType } from "./user";
 
 export type OrderType = {
   id: number;
-  customerName: string;
+  customer: UserType | null;
   status: StatusOrderType;
-  products: { name: string; quantity: number; price: number }[];
-  email: string;
+  products: { id: number; name: string; quantity: number; price: number }[];
+  total: number;
 };

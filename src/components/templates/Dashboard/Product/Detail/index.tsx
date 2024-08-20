@@ -2,36 +2,30 @@
 
 import React, { useState } from "react";
 import "./style.scss";
-import { useUserContext } from "@/context/user";
-import Badge from "@/components/atoms/Badge";
-import { badgeRoleStatus } from "@/enum";
-import Image from "next/image";
-import Loader from "@/components/atoms/Loader";
 import Button from "@/components/atoms/Button";
 import Modal from "@/components/atoms/Modal";
 import { useRouter } from "next/navigation";
+import { useProducContext } from "@/context/product";
+import { currencyFormat } from "@/lib/helper";
 
-function UserDetail({ slug }: { slug: string }) {
+function ProductDetail({ slug }: { slug: string }) {
   const router = useRouter();
   const [modalDelete, setModalDelete] = useState(false);
-  const { getDetailData, setStatus, setDeleted, isLoading } = useUserContext();
-  const user = getDetailData(Number(slug));
+  const { getDetailData, setDeleted } = useProducContext();
+  const product = getDetailData(Number(slug));
 
-  if (isLoading) return <Loader />;
 
-  if (!user) {
+  if (!product) {
     return (
       <div className="card-wrapper add-order">
-        <h2>User not found</h2>
+        <h2>Product not found</h2>
       </div>
     );
   }
 
-  const status = badgeRoleStatus(user.status);
-
   const handleDelete = (id: number) => {
     setDeleted(id);
-    router.replace("/dashboard/user");
+    router.replace("/dashboard/product");
   };
 
   return (
@@ -45,45 +39,26 @@ function UserDetail({ slug }: { slug: string }) {
         </div>
         <div className="detail-layout">
           <div>
-            <Image
-              src={user.image}
-              width={100}
-              height={100}
-              alt={`avatar ${user.username}`}
-            />
-          </div>
-          <div>
             <div className="detail-wrapper">
               <p>Name:</p>
               <p>
-                <b>{user.username}</b>
+                <b>{product.name}</b>
               </p>
             </div>
             <div className="detail-wrapper">
-              <p>Role:</p>
+              <p>Quantity:</p>
               <p>
-                <b>{user.role}</b>
+                <b>{product.quantity}</b>
               </p>
             </div>
             <div className="detail-wrapper">
-              <p>Status:</p>
+              <p>Price:</p>
               <p>
-                <Badge variant={status.variant}>{status.text}</Badge>
+                <b>{currencyFormat(product.price)}</b>
               </p>
             </div>
             <div className="btn-action">
-              <Button href={`/dashboard/user/edit/${user.id}`}>Edit</Button>
-              <Button
-                variant={user.status === "active" ? "warning" : "success"}
-                onClick={() =>
-                  setStatus(
-                    user.id,
-                    user.status === "active" ? "inactive" : "active"
-                  )
-                }
-              >
-                {user.status === "active" ? "Deactivated" : "Activated"}
-              </Button>
+              <Button href={`/dashboard/product/edit/${product.id}`}>Edit</Button>
               <Button variant="danger" onClick={() => setModalDelete(true)}>
                 Delete
               </Button>
@@ -92,13 +67,13 @@ function UserDetail({ slug }: { slug: string }) {
         </div>
       </div>
       <Modal isOpen={modalDelete} onClose={() => setModalDelete(false)}>
-        <b>Are you sure want to delete {user.username}?</b>
+        <b>Are you sure want to delete {product.name}?</b>
         <p>This user will be deleted and you can&apos;t undo this action.</p>
         <div className="modal-action">
           <Button variant="secondary" onClick={() => setModalDelete(false)}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={() => handleDelete(user.id)}>
+          <Button variant="danger" onClick={() => handleDelete(product.id)}>
             Delete
           </Button>
         </div>
@@ -107,4 +82,4 @@ function UserDetail({ slug }: { slug: string }) {
   );
 }
 
-export default UserDetail;
+export default ProductDetail;

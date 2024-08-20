@@ -10,24 +10,21 @@
     display: flex;
     flex-direction: column;
 
-    .form-group {
-      margin-bottom: 15px;
+    .users {
+      max-height: 60vh;
+      overflow-y: scroll;
 
-      label {
-        display: block;
-        margin-bottom: 5px;
+      .user-card {
+        cursor: pointer;
       }
 
-      input,
-      select {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        width: 100%;
+      .user-card.selected {
+        background-color: $color-primary-light;
       }
     }
 
-    .products {
+    .products,
+    .users {
       margin-bottom: 15px;
 
       h3 {
@@ -39,6 +36,10 @@
         grid-template-columns: 1fr 1fr;
         gap: 24px;
 
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+
         .product {
           border: 1px solid $color-border;
           padding: 20px;
@@ -46,9 +47,43 @@
           display: flex;
           flex-direction: column;
           margin-bottom: 10px;
+          transition: all 0.15s ease;
 
-          input {
-            margin-bottom: 5px;
+          &.selected {
+            border: 1px solid $color-primary;
+            background-color: $color-primary-light;
+          }
+
+          .name {
+            margin-bottom: 10px;
+            font-weight: 700;
+          }
+
+          .description,
+          .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+          }
+
+          .description .info {
+            font-size: 12px;
+            opacity: 0.5;
+          }
+
+          .product-info {
+            display: flex;
+            gap: 20px;
+
+            @media (max-width: 568px) {
+              flex-direction: column;
+              gap: 10px;
+            }
+
+            p {
+              flex: 1;
+            }
           }
         }
       }
@@ -61,8 +96,18 @@
     gap: 12px;
   }
 
+  .total-price {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ebebeb;
+    border: 1px solid $color-border;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
   .submit {
     display: flex;
     justify-content: end;
+    gap: 20px;
   }
 }

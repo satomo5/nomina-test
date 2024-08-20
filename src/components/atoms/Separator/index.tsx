@@ -5,6 +5,7 @@ interface SeparatorProps {
   thickness?: string;
   color?: string;
   length?: string;
+  margin?: string;
 }
 
 function Separator({
@@ -12,6 +13,7 @@ function Separator({
   thickness = '1px',
   color = '#ccc',
   length = '100%',
+  margin = '0px',
 }: SeparatorProps) {
   return (
     <div
@@ -20,6 +22,7 @@ function Separator({
         backgroundColor: color,
         height: direction === 'horizontal' ? thickness : length,
         width: direction === 'horizontal' ? length : thickness,
+        margin: margin,
       }}
     />
   );

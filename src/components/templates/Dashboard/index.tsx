@@ -7,6 +7,9 @@ import { useParams } from "next/navigation";
 import OrderPage from "./Order";
 import UserPage from "./User";
 import { DashboardProvider } from "@/context/dashboard";
+import ProductPage from "./Product";
+import { ProductProvider } from "@/context/product";
+import { UserProvider } from "@/context/user";
 
 export default function DashboardLayout() {
   const params = useParams();
@@ -18,6 +21,10 @@ export default function DashboardLayout() {
   switch (slug) {
     case "order":
       renderChild = <OrderPage slug={slugLvl2} />;
+      break;
+
+    case "product":
+      renderChild = <ProductPage />;
       break;
 
     case "user":
@@ -34,7 +41,11 @@ export default function DashboardLayout() {
         <Sidebar />
         <div className="main-content">
           <Header />
-          <div className="content">{renderChild}</div>
+          <div className="content">
+            <UserProvider>
+              <ProductProvider>{renderChild}</ProductProvider>
+            </UserProvider>
+          </div>
         </div>
       </DashboardProvider>
     </div>

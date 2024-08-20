@@ -29,7 +29,6 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     trigger({ username, password }).then((res) => {
-      console.log(res);
       if (res?.message === "Invalid credentials") {
         setAlert({
           type: "error",

@@ -1,0 +1,15 @@
+@import "@/styles/colors";
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 50px;
+  color: #7d7d7d;
+
+  p {
+    font-size: 20px;
+  }
+}

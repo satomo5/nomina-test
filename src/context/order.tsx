@@ -1,40 +1,31 @@
 "use client";
 
 import { OrderType } from "@/types/order";
+import { StatusOrderType } from "@/types/status";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface OrderContextType {
   orders: OrderType[];
   updateOrderStatus: (id: number, status: OrderType["status"]) => void;
   filterOrders: (status: OrderType["status"] | "all") => OrderType[];
+  addData: (data: OrderType) => void;
+  editData: (id: number, data: OrderType) => void;
+  getDetailData: (id: number) => OrderType | undefined;
+  setStatus: (id: number, status: StatusOrderType) => void;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export function OrderProvider({ children }: { children: React.ReactNode }) {
-  const [orders, setOrders] = useState<OrderType[]>([
-    {
-      id: 1,
-      customerName: "Alice Johnson",
-      status: "pending",
-      products: [
-        { name: "Product A", quantity: 2, price: 29.99 },
-        { name: "Product B", quantity: 1, price: 49.99 },
-      ],
-      email: "alice@example.com",
-    },
-    {
-      id: 2,
-      customerName: "Bob Smith",
-      status: "shipped",
-      products: [
-        { name: "Product C", quantity: 1, price: 19.99 },
-        { name: "Product D", quantity: 3, price: 9.99 },
-      ],
-      email: "bob@example.com",
-    },
-    // Add more orders as needed
-  ]);
+  const [orders, setOrders] = useState<OrderType[]>([]);
+
+  useEffect(() => {
+    const dataStorage = localStorage.getItem("orders");
+
+    if (dataStorage) {
+      setOrders(JSON.parse(dataStorage));
+    }
+  }, []);
 
   function updateOrderStatus(id: number, status: OrderType["status"]) {
     setOrders((prevOrders) =>
@@ -52,14 +43,53 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     return orders.filter((order) => order.status === status);
   }
 
-  useEffect(() => {
-    const data = localStorage.getItem("orders") as OrderType[] | null;
+  const setStatus = (id: number, status: StatusOrderType) => {
+    const newData = orders.map((item) => {
+      if (item.id === id) {
+        return { ...item, status };
+      }
+      return item;
+    });
 
-    setOrders(data || []);
-  }, []);
+    setOrders(newData);
+    localStorage.setItem("orders", JSON.stringify(newData));
+  };
+
+  const getDetailData = (id: number) => {
+    return orders.find((item) => item.id === id);
+  };
+
+  const addData = (props: OrderType) => {
+    const newData = [props, ...orders];
+
+    setOrders(newData);
+    localStorage.setItem("orders", JSON.stringify(newData));
+  };
+
+  const editData = (id: number, props: OrderType) => {
+    const newData = orders.map((item) => {
+      if (item.id === id) {
+        return props;
+      }
+      return item;
+    });
+
+    setOrders(newData);
+    localStorage.setItem("orders", JSON.stringify(newData));
+  };
 
   return (
-    <OrderContext.Provider value={{ orders, updateOrderStatus, filterOrders }}>
+    <OrderContext.Provider
+      value={{
+        orders,
+        addData,
+        editData,
+        updateOrderStatus,
+        setStatus,
+        getDetailData,
+        filterOrders,
+      }}
+    >
       {children}
     </OrderContext.Provider>
   );

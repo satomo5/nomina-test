@@ -13,6 +13,7 @@ import Loader from "@/components/atoms/Loader";
 import { statusUserRoleFilter } from "@/const/filter";
 import Separator from "@/components/atoms/Separator";
 import { RoleType } from "@/types/user";
+import Empty from "@/components/atoms/Empty";
 
 function UserList() {
   const { isLoading, getFilterData } = useUserContext();
@@ -64,7 +65,8 @@ function UserList() {
       </div>
       {isLoading ? (
         <Loader />
-      ) : (
+      ) : getFilterData({ role: filterRole, status: filterStatus })?.length >
+        0 ? (
         <div className="list-wrapper">
           {getFilterData({ role: filterRole, status: filterStatus })?.map(
             (item, index) => {
@@ -98,6 +100,8 @@ function UserList() {
             }
           )}
         </div>
+      ) : (
+        <Empty />
       )}
     </div>
   );
